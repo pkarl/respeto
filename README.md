@@ -21,7 +21,7 @@ que?
 #### Usage
 
 ```javascript
-	var **rsp** = new Respeto();
+var rsp = new Respeto();
 ```
 
 Returns the object with the following methods:
