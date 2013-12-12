@@ -1,6 +1,6 @@
 # Respeto
 
-Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons). This requires [jQuery](http://jquery.org).
+Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons).
 
 ## TODO
 
