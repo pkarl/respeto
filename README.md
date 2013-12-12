@@ -13,7 +13,8 @@ que?
 This can be used by itself, or with a responsive state manager like [Simple State Manager](https://github.com/SimpleStateManager/SimpleStateManager). I recommend the latter, and will provide documentation to support that implementation.
 
 **1** - Download the latest version of Respeto [here](NEED_DOWNLOAD_LINK)
- * It depends on jQuery and I recommend you use Simple State Manager, too
+
+> Respeto depends on [jQuery](https://jquery.org/) and I recommend you use [Simple State Manager](http://www.simplestatemanager.com/), too
 
 **2** - Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
 
