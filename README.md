@@ -10,41 +10,7 @@ que?
 
 ## Usage
 
-1. create a new Respeto object
-2. run the `load()` method
-3. `src` is set on all of your images based on the data attributes
-
-```javascript
-	var rsp = new Respeto();
-
-	// see the AFTER html below to see what happens when `load('large')` runs
-	rsp.load('large');
-```
-
-```html
-	<!-- BEFORE -->
-
-	<img src="kitten.jpg" 	 data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
-	<img src="puppy.jpg" 	 data-rsp-img="dog.jpg">
-	<img src="baby_fish.jpg" data-rsp-img="fish.jpg">
-	<img src="bunny.jpg" 	 data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
-	<img src="kit.jpg" 		 data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
-
-	// note: no src on this one
-	<img data-rsp-img="wolf.jpg">
-
-
-	<!-- AFTER -->
-
-	<img src="images/cats/cat_large.jpg" data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
-	<img src="dog_large.jpg" data-rsp-img="dog.jpg">
-	<img src="fish_large.jpg" data-rsp-img="fish.jpg">
-	<img src="images/wildlife/rabbit_large.jpg" data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
-	<img src="images/wildlife/fox_large.jpg" data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
-
-	// note: no src on this one
-	<img src="wolf.jpg" data-rsp-img="wolf.jpg">
-```
+`how to install it and set it up and use it.`
 
 ## API
 
@@ -52,7 +18,20 @@ que?
 
 * options - _object , optional_ . Respeto parameters, see below
 
-### option
+#### Usage
+
+```javascript
+	var **rsp** = new Respeto();
+```
+
+Returns the object with the following methods:
+
+* rsp.load(label, _options_) - processes targets that contain Respeto data attributes and assigns `src` or `style` properties as necessary. `options` is an optional object where you may specify a context, a selector to match, and/or a selector to exclude:
+ * *context*: a jQuery selector that limits the scope of what you're loading. Useful if you're working in a single-page app, and you only want to load images inside a specific container.
+ * *match*: a jQuery selector that limits the scope of what you're loading to elements that match this option.
+ * *exclude*: a single jQuery selector (not comma-delimited)
+
+### options
 
 <table border="0" cellspacing="0">
     <thead>
@@ -98,3 +77,41 @@ que?
   		<td><code>retinaSuffix</code> determines the suffix that will be attached when <code>disableRetina</code> is false, and users are accessing your site on a retina-friendly device.</td>
   	</tr>
 </table>
+
+### Examples
+
+1. create a new Respeto object
+2. run the `load()` method
+3. `src` is set on all of your images based on the data attributes
+
+```javascript
+	var rsp = new Respeto();
+
+	// see the AFTER html below to see what happens when `load('large')` runs
+	rsp.load('large');
+```
+
+```html
+	<!-- BEFORE -->
+
+	<img src="kitten.jpg" 	 data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
+	<img src="puppy.jpg" 	 data-rsp-img="dog.jpg">
+	<img src="baby_fish.jpg" data-rsp-img="fish.jpg">
+	<img src="bunny.jpg" 	 data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
+	<img src="kit.jpg" 		 data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
+
+	// note: no src on this one
+	<img data-rsp-img="wolf.jpg">
+
+
+	<!-- AFTER -->
+
+	<img src="images/cats/cat_large.jpg" data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
+	<img src="dog_large.jpg" data-rsp-img="dog.jpg">
+	<img src="fish_large.jpg" data-rsp-img="fish.jpg">
+	<img src="images/wildlife/rabbit_large.jpg" data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
+	<img src="images/wildlife/fox_large.jpg" data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
+
+	<!-- note: no src on this one -->
+	<img src="wolf.jpg" data-rsp-img="wolf.jpg">
+```
