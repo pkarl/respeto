@@ -23,7 +23,7 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 </body>
 ```
 
-3. Add Respeto data attributes where you want to manage image loading
+ 3. Add Respeto data attributes where you want to manage image loading
 
 ```html
 <img src="lincoln_fallback.jpg" data-rsp-img="portrait_lincoln.jpg">
@@ -31,7 +31,7 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 <img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
 ```
 
-4. Create a Respeto object and run the `load()` method
+ 4. Create a Respeto object and run the `load()` method
 
 ```javascript
 $(function() { // jQuery.on('ready')
@@ -42,7 +42,7 @@ $(function() { // jQuery.on('ready')
 });
 ```
 
-5. ...and your `img` elements get their `src` attributes set, and new images will load
+ 5. ...and your `img` elements get their `src` attributes set, and new images will load
 
 ```html
 <img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
@@ -50,7 +50,7 @@ $(function() { // jQuery.on('ready')
 <img src="custom/path/portrait_obama.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
 ```
 
-6. [optional] Simple State Manager configuration
+ 6. [optional] Simple State Manager configuration
 
 ```javascript
 ssm.addState({
