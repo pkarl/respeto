@@ -45,3 +45,56 @@ que?
 	// note: no src on this one
 	<img src="wolf.jpg" data-rsp-img="wolf.jpg">
 ```
+
+## API
+
+### new Respeto(_options_)
+
+* options - _object , optional_ . Respeto parameters, see below
+
+### option
+
+<table border="0" cellspacing="0">
+    <thead>
+    	<td align="center"><strong>Parameter</strong></td>
+    	<td align="center"><strong>Type</strong></td>
+    	<td align="center"><strong>Default Value</strong></td>
+    	<td align="center"><strong>Example</strong></td>
+    	<td align="center"><strong>Description</strong></td>
+  	</thead>
+  	<tr>
+  		<td><strong>imageDataAttribute</strong></td>
+  		<td>string</td>
+  		<td>'rsp-img'</td>
+  		<td>'image-source'</td>
+  		<td>This translates into a <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes">data attribute</a> that contains a source image. Using the default, it will look like this: <code>&lt;img data-rsp-img=&ldquo;your_image_here.jpg&rdquo;&gt;</code></td>
+  	</tr>
+  	<tr>
+  		<td><strong>imagePathAttribute</strong></td>
+  		<td>string</td>
+  		<td>'rsp-path'</td>
+  		<td>'custom-path'</td>
+  		<td>This is the data attribute with will contain paths for each image that wishes to override the global <code>imagePath</code>.</td>
+  	</tr>
+  	<tr>
+  		<td><strong>imagePath</strong></td>
+  		<td>string</td>
+  		<td>''</td>
+  		<td>'images/'</td>
+  		<td>This path will be prefixed onto every source image. If a <code>data-rsp-path</code> is present, imagePath will be ignored.</td>
+  	</tr>
+  	<tr>
+  		<td><strong>disableRetina</strong></td>
+  		<td>boolean</td>
+  		<td>true</td>
+  		<td>false</td>
+  		<td>If you wish to enable retina suffixes (for instance, if you are generating retina alternatives), set this to <code>false</code>.</td>
+  	</tr>
+  	<tr>
+  		<td><strong>retinaSuffix</strong></td>
+  		<td>string</td>
+  		<td>'_x2'</td>
+  		<td>'@2'</td>
+  		<td><code>retinaSuffix</code> determines the suffix that will be attached when <code>disableRetina</code> is false, and users are accessing your site on a retina-friendly device.</td>
+  	</tr>
+</table>
