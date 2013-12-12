@@ -1,0 +1,27 @@
+{
+  "name": "jquery.respeto",
+  "version": "0.0.1",
+  "authors": [
+    "pkarl <pete.karl@gmail.com>"
+  ],
+  "description": "A deferred image loader. Built for responsive & retina-friendliness",
+  "main": "jquery.respeto.js",
+  "keywords": [
+    "deferred",
+    "images",
+    "retina",
+    "responsive"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3"
+  }
+}

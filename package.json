@@ -1,0 +1,30 @@
+{
+  "name": "jquery.respeto",
+  "version": "0.0.1",
+  "description": "Respeto is a deferred image loader made to support responsive image workflows",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Upstatement/respeto"
+  },
+  "keywords": [
+    "responsive",
+    "image",
+    "deferred",
+    "loader"
+  ],
+  "author": "Pete Karl II (Upstatement)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Upstatement/respeto/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
+}

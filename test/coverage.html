@@ -1,0 +1,87 @@
+<html>
+	<meta charset="utf-8">
+	<head>
+		<title>Deferred Image Loader Tests</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="js/lib/mocha.css" />
+	</head>
+	<body>
+		<div id="blanket-main" class="hidden" style="display: none;"></div>
+		<div id="mocha"></div>
+
+		<!-- console.log -->
+		<script>
+			// Patch console.log in if not found. (IE9)
+			// See: http://stackoverflow.com/questions/5472938
+			window.console || (window.console = {});
+			window.console.log || (window.console.log = function () {});
+		</script>
+
+		<script src="../components/jquery/jquery.min.js"></script>
+
+		<script src="js/lib/mocha.js"></script>
+		<script src="js/lib/chai.js"></script>
+
+		<script src="js/lib/blanket.js"></script>
+
+		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="../src/jquery.respeto.js"></script>
+
+		<!-- Set up Mocha and Chai -->
+		<script>
+			var expect = chai.expect
+
+			mocha.setup({
+				ui: "bdd",
+				globals: ['stats', 'failures', 'runner'], // Blanket leaks.
+				bail: false
+			});
+
+			// Set up Mocha with custom Blanket.js reporter.
+			(function (_reporter) {
+				mocha.reporter(function (runner) {
+					// Listeners.
+					runner.on("start",  function () { blanket.setupCoverage(); });
+					runner.on("suite",  function () { blanket.onModuleStart(); });
+					runner.on("test",   function () { blanket.onTestStart(); });
+					runner.on("test end", function (test) {
+						blanket.onTestDone(test.parent.tests.length,
+															 test.state === 'passed');
+					});
+					runner.on("end",	  function () {
+						blanket.onTestsDone();
+						$("#blanket-main").removeClass("hidden").show("fast");
+						$("html, body").animate({ scrollTop: 0 });
+					});
+
+					_reporter(runner);
+				});
+			}(mocha._reporter));
+
+			blanket.beforeStartTestRunner({
+				callback: function () {
+					(window.mochaPhantomJS || mocha).run();
+				}
+			});
+		</script>
+
+		<!-- Include our specs. -->
+		<!-- Ch02 -->
+		<script src="js/spec/jquery.respeto.spec.js"></script>
+
+		<!-- Coverage style helpers -->
+		<style type="text/css">
+			#blanket-main {
+				margin-top: 65px;
+				margin-right: 20px;
+				margin-left: 20px;
+				border-radius: 5px;
+				border: 1px solid #666;
+			}
+		</style>
+
+		<!-- Test Fixtures. -->
+		<div id="fixtures"></div>
+	</body>
+</html>
