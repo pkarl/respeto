@@ -25,6 +25,8 @@
     "url": "https://github.com/Upstatement/respeto/issues"
   },
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
