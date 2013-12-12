@@ -1,12 +1,10 @@
 # Respeto
 
-Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons). This requires [jQuery](http://jquery.org)
+Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons). This requires [jQuery](http://jquery.org).
 
 ## About
 
-que?
 
-## Features
 
 ## Usage
 
@@ -161,22 +159,23 @@ rsp.load('small', {
 });
 ```
 
+##### Before running `rsp.load()`:
 ```html
-
-<!-- BEFORE -->
 <img class="load-me" data-rsp-img="dog.jpg">
 <img class="load-me" data-rsp-img="fish.jpg">
 <img data-rsp-img="cat.jpg">
 <img data-rsp-img="monkey.jpg">
 <img class="load-me" data-rsp-img="elephant.jpg">
 <img data-rsp-img="giraffe.jpg">
+```
 
-<!-- AFTER -->
-<img src="dog_small.jpg" class="load-me" data-rsp-img="dog.jpg">
-<img src="fish_small.jpg" class="load-me" data-rsp-img="fish.jpg">
+##### After running `rsp.load()`:
+```html
+<img src="dog_small.jpg" class="load-me" data-rsp-img="dog.jpg"> <!-- match! -->
+<img src="fish_small.jpg" class="load-me" data-rsp-img="fish.jpg"> <!-- match! -->
 <img data-rsp-img="cat.jpg">
 <img data-rsp-img="monkey.jpg">
-<img src="elephant_small.jpg" class="load-me" data-rsp-img="elephant.jpg">
+<img src="elephant_small.jpg" class="load-me" data-rsp-img="elephant.jpg"> <!-- match! -->
 <img data-rsp-img="giraffe.jpg">
 	
 ```
@@ -184,15 +183,17 @@ rsp.load('small', {
 #### Contextual image-loading
 
 ```javascript
+
 var rsp = new Respeto();
+
+// load our "large" images inside of elements with id of 'page-1'
 rsp.load('large', {
 	context: '#page-1'
 });
 ```
 
+##### Before running `load()`:
 ```html
-
-<!-- BEFORE -->
 <section id="#page-1">
 	<img data-rsp-img="dog.jpg">
 	<img data-rsp-img="fish.jpg">
@@ -207,11 +208,13 @@ rsp.load('large', {
 	<img data-rsp-img="elephant.jpg">
 	<img data-rsp-img="giraffe.jpg">
 </section>
+```
 
-<!-- AFTER -->
+##### After running `load()`:
+```html
 <section id="#page-1">
-	<img src="dog_large.jpg" data-rsp-img="dog.jpg">
-	<img src="fish_large.jpg" data-rsp-img="fish.jpg">
+	<img src="dog_large.jpg" data-rsp-img="dog.jpg"> <!-- match! -->
+	<img src="fish_large.jpg" data-rsp-img="fish.jpg"> <!-- match! -->
 </section>
 
 <section id="#page-2">

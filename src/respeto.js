@@ -22,7 +22,7 @@ var Respeto = function (options) {
 
           imagePath: '',
 
-          disableRetina: false, // don't append _x2, even if it's available
+          disableRetina: true, // don't append _x2, even if it's available
           retinaSuffix: '_x2',
 
           // searchTags: ['img','div'] // FUTURE, assumes img + div for now
@@ -72,7 +72,12 @@ Respeto.prototype = {
         var imgExt = userImg.slice(-4);
         var imgBase = userImg.slice(0,-4);
 
-        var imgSrc = path + imgBase + '_' + label + (_this.settings.disableRetina ? '' : _this.settings.retinaSuffix) + imgExt;
+        var retinaSuffix = '';
+        if(_this.settings.disableRetina === false && _this._pixelRatio > 1){
+          retinaSuffix = _this.settings.retinaSuffix;
+        }
+
+        var imgSrc = path + imgBase + (label ? '_' + label : '') + retinaSuffix + imgExt;
 
         if($t.is('img')) {
           $t.attr('src', imgSrc);
