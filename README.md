@@ -10,7 +10,73 @@ que?
 
 ## Usage
 
-`how to install it and set it up and use it.`
+This can be used by itself, or with a responsive state manager like [Simple State Manager](https://github.com/SimpleStateManager/SimpleStateManager). I recommend the latter, and will provide documentation to support that implementation.
+
+1. Download the latest version of Respeto [here](NEED_DOWNLOAD_LINK)
+ * It depends on jQuery and I recommend you use Simple State Manager, too
+
+2. Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
+
+```html
+		<script src="path_to_js/respeto.js"></script>
+	</body>
+```
+
+3. Add Respeto data attributes where you want to manage image loading
+
+```html
+	<img src="lincoln_fallback.jpg" data-rsp-img="portrait_lincoln.jpg">
+	<img data-rsp-img="portrait_washington.jpg">
+	<img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+```
+
+4. Create a Respeto object and run the `load()` method
+
+```javascript
+$(function() { // jQuery.on('ready')
+
+	var rsp = new Respeto();
+	rsp.load('tablet');
+
+});
+```
+
+5. ...and your `img` elements get their `src` attributes set, and new images will load
+
+```html
+	<img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
+	<img src="portrait_washington.jpg" data-rsp-img="portrait_washington.jpg">
+	<img src="custom/path/portrait_obama.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+```
+
+6. [optional] Simple State Manager configuration
+
+```javascript
+ssm.addState({
+    id: 'mobile',
+    maxWidth: 480,
+    onEnter: function(){
+        rsp.load('small');
+    }
+});
+
+ssm.addState({
+    id: 'tablet',
+    minWidth: 480,
+    maxWidth: 1023,
+    onEnter: function(){
+        rsp.load(''); // resets cat_small.jpg to cat.jpg
+    }
+});
+
+ssm.addState({
+    id: 'desktop',
+    minWidth: 1024,
+    onEnter: function(){
+        rsp.load('large');
+    }
+});
+```
 
 ## API
 
@@ -77,6 +143,10 @@ Returns the object with the following methods:
   		<td><code>retinaSuffix</code> determines the suffix that will be attached when <code>disableRetina</code> is false, and users are accessing your site on a retina-friendly device.</td>
   	</tr>
 </table>
+
+### Minimizing Requests/Bandwidth vs. JavaScript support
+
+TBD
 
 ### Examples
 
