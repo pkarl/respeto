@@ -30,7 +30,6 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 <img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
 ```
 4. Create a Respeto object and run the `load()` method
-
 ```javascript
 $(function() { // jQuery.on('ready')
 
@@ -38,9 +37,7 @@ $(function() { // jQuery.on('ready')
 	rsp.load('tablet');
 
 });
-```
-5. ...and your `img` elements get their `src` attributes set, and new images will load
-
+```5. ...and your `img` elements get their `src` attributes set, and new images will load
 ```html
 <img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
 <img src="portrait_washington.jpg" data-rsp-img="portrait_washington.jpg">
