@@ -2,9 +2,12 @@
 
 Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons). This requires [jQuery](http://jquery.org).
 
-## About
+## TODO
 
-
+* finish explaining what this is
+* remove SSM from the explanation because it's unreliable
+* explain bandwidth vs. JS support implications
+* nod to the ongoing responsive image standards conversation
 
 ## Usage
 
@@ -12,7 +15,7 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 
 **1** - Download the latest version of Respeto [here](NEED_DOWNLOAD_LINK)
 
-> Respeto depends on [jQuery](https://jquery.org/) and I recommend you use [Simple State Manager](http://www.simplestatemanager.com/), too
+> Respeto depends on [jQuery](https://jquery.org/)
 
 **2** - Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
 
@@ -28,6 +31,7 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 <img src="lincoln_fallback.jpg" data-rsp-img="portrait_lincoln.jpg">
 <img data-rsp-img="portrait_washington.jpg">
 <img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+<div data-rsp-img="portrait_obama.jpg"></div>
 ```
 
 **4** - Create a Respeto object and run the `load()` method
@@ -44,38 +48,33 @@ $(function() { // jQuery.on('ready')
 **5** - ...and your `img` elements get their `src` attributes set, and new images will load
 
 ```html
-<img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
-<img src="portrait_washington.jpg" data-rsp-img="portrait_washington.jpg">
-<img src="custom/path/portrait_obama.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+<img src="portrait_lincoln_tablet.jpg" data-rsp-img="portrait_lincoln.jpg">
+<img src="portrait_washington_tablet.jpg" data-rsp-img="portrait_washington.jpg">
+<img src="custom/path/portrait_obama_tablet.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+<div style="background-image: url(http://your_site.com/portrait_obama_tablet.jpg)" data-rsp-img="portrait_obama.jpg"></div>
 ```
 
-**6** - [optional] Simple State Manager configuration
+**6** - [optional] Simple state-based usage
 
 ```javascript
-ssm.addState({
-    id: 'mobile',
-    maxWidth: 480,
-    onEnter: function(){
-        rsp.load('small');
-    }
-});
 
-ssm.addState({
-    id: 'tablet',
-    minWidth: 480,
-    maxWidth: 1023,
-    onEnter: function(){
-        rsp.load(''); // resets cat_small.jpg to cat.jpg
-    }
-});
+// this should be inside of a jQuery $.ready() function
 
-ssm.addState({
-    id: 'desktop',
-    minWidth: 1024,
-    onEnter: function(){
-        rsp.load('large');
-    }
-});
+var rsp = new Respeto();
+
+var width = $(window).width();
+
+if(width <= 480) {
+  rsp.load('small'); // loads images with _small suffix
+}
+
+if(width > 480 && width <= 1024) {
+  rsp.load('large'); // sets image sources with _large suffix
+}
+
+if(width > 1024) {
+  rsp.load('huge'); // loads images with _huge suffix
+}
 ```
 
 ## API
