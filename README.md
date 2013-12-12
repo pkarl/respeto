@@ -45,9 +45,9 @@ $(function() { // jQuery.on('ready')
 5. ...and your `img` elements get their `src` attributes set, and new images will load
 
 ```html
-	<img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
-	<img src="portrait_washington.jpg" data-rsp-img="portrait_washington.jpg">
-	<img src="custom/path/portrait_obama.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+<img src="portrait_lincoln.jpg" data-rsp-img="portrait_lincoln.jpg">
+<img src="portrait_washington.jpg" data-rsp-img="portrait_washington.jpg">
+<img src="custom/path/portrait_obama.jpg" data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
 ```
 
 6. [optional] Simple State Manager configuration
@@ -149,40 +149,78 @@ Returns the object with the following methods:
 
 TBD
 
-### Examples
+### Advanced
 
-1. create a new Respeto object
-2. run the `load()` method
-3. `src` is set on all of your images based on the data attributes
+#### Loading images based on class matching
 
 ```javascript
-	var rsp = new Respeto();
-
-	// see the AFTER html below to see what happens when `load('large')` runs
-	rsp.load('large');
+var rsp = new Respeto();
+rsp.load('small', {
+	match: '.load-me'
+});
 ```
 
 ```html
-	<!-- BEFORE -->
 
-	<img src="kitten.jpg" 	 data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
-	<img src="puppy.jpg" 	 data-rsp-img="dog.jpg">
-	<img src="baby_fish.jpg" data-rsp-img="fish.jpg">
-	<img src="bunny.jpg" 	 data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
-	<img src="kit.jpg" 		 data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
+<!-- BEFORE -->
+<img class="load-me" data-rsp-img="dog.jpg">
+<img class="load-me" data-rsp-img="fish.jpg">
+<img data-rsp-img="cat.jpg">
+<img data-rsp-img="monkey.jpg">
+<img class="load-me" data-rsp-img="elephant.jpg">
+<img data-rsp-img="giraffe.jpg">
 
-	// note: no src on this one
-	<img data-rsp-img="wolf.jpg">
+<!-- AFTER -->
+<img src="dog_small.jpg" class="load-me" data-rsp-img="dog.jpg">
+<img src="fish_small.jpg" class="load-me" data-rsp-img="fish.jpg">
+<img data-rsp-img="cat.jpg">
+<img data-rsp-img="monkey.jpg">
+<img src="elephant_small.jpg" class="load-me" data-rsp-img="elephant.jpg">
+<img data-rsp-img="giraffe.jpg">
+	
+```
 
+#### Contextual image-loading
 
-	<!-- AFTER -->
+```javascript
+var rsp = new Respeto();
+rsp.load('large', {
+	context: '#page-1'
+});
+```
 
-	<img src="images/cats/cat_large.jpg" data-rsp-img="cat.jpg" data-rsp-path="images/cats/">
+```html
+
+<!-- BEFORE -->
+<section id="#page-1">
+	<img data-rsp-img="dog.jpg">
+	<img data-rsp-img="fish.jpg">
+</section>
+
+<section id="#page-2">
+	<img data-rsp-img="cat.jpg">
+	<img data-rsp-img="monkey.jpg">
+</section>
+
+<section id="#page-3">
+	<img data-rsp-img="elephant.jpg">
+	<img data-rsp-img="giraffe.jpg">
+</section>
+
+<!-- AFTER -->
+<section id="#page-1">
 	<img src="dog_large.jpg" data-rsp-img="dog.jpg">
 	<img src="fish_large.jpg" data-rsp-img="fish.jpg">
-	<img src="images/wildlife/rabbit_large.jpg" data-rsp-img="rabbit.jpg" data-rsp-path="images/wildlife/">
-	<img src="images/wildlife/fox_large.jpg" data-rsp-img="fox.jpg" data-rsp-path="images/wildlife/">
+</section>
 
-	<!-- note: no src on this one -->
-	<img src="wolf.jpg" data-rsp-img="wolf.jpg">
+<section id="#page-2">
+	<img data-rsp-img="cat.jpg">
+	<img data-rsp-img="monkey.jpg">
+</section>
+
+<section id="#page-3">
+	<img data-rsp-img="elephant.jpg">
+	<img data-rsp-img="giraffe.jpg">
+</section>
+	
 ```
