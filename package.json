@@ -1,5 +1,5 @@
 {
-  "name": "jquery.respeto",
+  "name": "respeto",
   "version": "0.0.1",
   "description": "Respeto is a deferred image loader made to support responsive image workflows",
   "main": "Gruntfile.js",

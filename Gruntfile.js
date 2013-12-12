@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['src/jquery.respeto.js']
+          'dist/<%= pkg.name %>.min.js': ['src/respeto.js']
         }
       }
     },
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
+      files: ['Gruntfile.js', 'src/**/*.js', 'test/spec/**/*.js'],
       tasks: ['jshint', 'qunit']
     }
   });
@@ -35,6 +35,6 @@ module.exports = function(grunt) {
 
   // grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['uglify']);
 
 };

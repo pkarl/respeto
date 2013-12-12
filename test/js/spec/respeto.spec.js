@@ -1,7 +1,7 @@
 //  /*global confirm, mocha */
 //  mocha.globals(["confirm"]);
 
-describe('Respeto: Deferred Image Loader', function () {
+describe('Respeto: A Deferred Image Loader', function () {
 
   var $fixture =  '<div                    data-rsp-img="cat.jpg"                   ></div>' + 
                   '<div                    data-rsp-img="cat.jpg" class="test-match"></div>' + 
