@@ -18,16 +18,17 @@ This can be used by itself, or with a responsive state manager like [Simple Stat
 2. Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
 
 ```html
-		<script src="path_to_js/respeto.js"></script>
-	</body>
+	...
+	<script src="path_to_js/respeto.js"></script>
+</body>
 ```
 
 3. Add Respeto data attributes where you want to manage image loading
 
 ```html
-	<img src="lincoln_fallback.jpg" data-rsp-img="portrait_lincoln.jpg">
-	<img data-rsp-img="portrait_washington.jpg">
-	<img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
+<img src="lincoln_fallback.jpg" data-rsp-img="portrait_lincoln.jpg">
+<img data-rsp-img="portrait_washington.jpg">
+<img data-rsp-img="portrait_obama.jpg" data-rsp-path="custom/path/">
 ```
 
 4. Create a Respeto object and run the `load()` method
