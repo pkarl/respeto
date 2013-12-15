@@ -3,12 +3,19 @@
 <head>
 	<title>Respeto Demo</title>
 </head>
+<style type="text/css" media="screen">
+	.container {
+		background: no-repeat center right;
+	}
+</style>
 <body>
-	<div class="container">
+	<div class="container" data-rsp-img="atlas.jpg">
 		<ul class="page-data">
 			<li>state: <span id="state"></span></li>
 		</ul>
 		<img data-rsp-img="atlas.jpg">
+
+		<div id="bg" data-rsp-img="atlas.jpg"></div>
 	</div>
 
 	<script src="js/jquery-2.0.3.min.js"></script>
