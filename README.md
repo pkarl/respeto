@@ -88,7 +88,29 @@ Here are the pieces:
 3. a destination directory
 4. Respeto, of course
 
-...
+### 1 - Source image management
+
+* certain formats don't process well (animated gifs, svg)
+* have a source images dir for processing, and a source images dir for copying
+* my example only has a processing dir for brevity
+
+### 2 - Image Workflow Tools
+
+* Grunt
+* Grunt Responsive Images (https://github.com/andismith/grunt-responsive-images)
+* ImageMagick
+ * `brew install ImageMagick` if you're on OSX
+
+### 3 - Destination image management
+
+* no source control here
+ * .gitignore away
+* compress wisely
+ * you can get away with more compression in retina (http://dh.karelia.com/retina/)
+
+### 4 - Respeto implementation
+
+* This is the easy part, eh? Depending on your needs, the rest of this README and examples should take care of this part...
 
 ## API
 
