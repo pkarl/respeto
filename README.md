@@ -11,11 +11,13 @@ Respeto is a deferred image loader made to support responsive image workflows. I
 
 ## Usage
 
-This can be used by itself, or with a responsive state manager like [Simple State Manager](https://github.com/SimpleStateManager/SimpleStateManager). I recommend the latter, and will provide documentation to support that implementation.
+This can be used by itself, or with a responsive state manager. I've created a very simple state manager implementation in the `/demo/js/demo.js` file.
 
 **1** - Download the latest version of Respeto [here](NEED_DOWNLOAD_LINK)
 
 > Respeto depends on [jQuery](https://jquery.org/)
+
+> Respeto recommends a responsive image workflow with [Grunt](http://gruntjs.com/) and [Grunt Responsive Images](https://github.com/andismith/grunt-responsive-images) (more details below)
 
 **2** - Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
 
