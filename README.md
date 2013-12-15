@@ -5,9 +5,9 @@ Respeto is a deferred image loader made to support responsive image workflows. I
 ## TODO
 
 * finish explaining what this is
-* remove SSM from the explanation because it's unreliable
 * explain bandwidth vs. JS support implications
 * nod to the ongoing responsive image standards conversation
+* finish responsive workflow explanation
 
 ## Usage
 
@@ -76,6 +76,19 @@ if(width > 1024) {
   rsp.load('huge'); // loads images with _huge suffix
 }
 ```
+
+## A Responsive Image Workflow
+
+Using Respeto really means that you're using a responsive image workflow (possibly for the first time). What I've created in the `/demo` directory constitutes a very simple example of a working responsive workflow. 
+
+Here are the pieces:
+
+1. a source images directory
+2. image workflow tools (in this case Grunt and ImageMagick)
+3. a destination directory
+4. Respeto, of course
+
+...
 
 ## API
 
