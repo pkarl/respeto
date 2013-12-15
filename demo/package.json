@@ -1,0 +1,11 @@
+{
+  "name": "respeto-demo",
+  "version": "0.0.1",
+  "description": "This is an example of a responsive image workflow with support from Grunt and Respeto",
+  "main": "index.html",
+  "author": "Pete Karl II",
+  "devDependencies": {
+    "grunt-responsive-images": "0.0.7",
+    "grunt": "~0.4.2"
+  }
+}

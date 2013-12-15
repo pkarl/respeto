@@ -22,7 +22,7 @@ var Respeto = function (options) {
 
           imagePath: '',
 
-          disableRetina: true, // don't append _x2, even if it's available
+          retina: false, // don't append retina suffix
           retinaSuffix: '_x2',
 
           // searchTags: ['img','div'] // FUTURE, assumes img + div for now
@@ -53,10 +53,12 @@ Respeto.prototype = {
         options.context || document
       );
 
-      this._reSource($targets, label);
+      var retina = options.retina || this.settings.retina;
+
+      this._reSource($targets, label, retina);
     },
 
-    _reSource: function(targets, label) {
+    _reSource: function(targets, label, retina) {
       var _this = this;
 
       targets.each(function() {
@@ -69,15 +71,7 @@ Respeto.prototype = {
 
         var path = $t.data(_this.settings.imagePathAttribute) || _this.settings.imagePath;
 
-        var imgExt = userImg.slice(-4);
-        var imgBase = userImg.slice(0,-4);
-
-        var retinaSuffix = '';
-        if(_this.settings.disableRetina === false && _this._pixelRatio > 1){
-          retinaSuffix = _this.settings.retinaSuffix;
-        }
-
-        var imgSrc = path + imgBase + (label ? '_' + label : '') + retinaSuffix + imgExt;
+        var imgSrc = _this._buildImagePath(path, userImg, label, retina, _this._pixelRatio)
 
         if($t.is('img')) {
           $t.attr('src', imgSrc);
@@ -85,6 +79,21 @@ Respeto.prototype = {
           $t.css('background-image', 'url(' + imgSrc + ')');
         }
       });
+    },
+
+    _buildImagePath: function(path, imgData, label, retina, pixelRatio) {
+
+      console.log(path, imgData, label, retina, pixelRatio);
+
+      var imgExt = imgData.slice(-4);
+      var imgBase = imgData.slice(0,-4);
+
+      var retinaSuffix = '';
+      if(retina === true && pixelRatio > 1){
+        retinaSuffix = this.settings.retinaSuffix;
+      }
+
+      return path + imgBase + (label ? '_' + label : '') + retinaSuffix + imgExt;
     },
 
     _fetchTargets: function(match, exclude, scope) {

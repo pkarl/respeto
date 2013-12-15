@@ -3,7 +3,7 @@
 
 describe('Respeto: A Deferred Image Loader', function () {
 
-  var $fixture =  '<div                    data-rsp-img="cat.jpg"                   ></div>' + 
+  var $fixture =  '<div id="retina-test"   data-rsp-img="cat.jpg"                   ></div>' + 
                   '<div                    data-rsp-img="cat.jpg" class="test-match"></div>' + 
                   '<img src="kitten3.jpg"  data-rsp-img="cat.jpg"                       data-rsp-path="/custom/">' + 
                   '<img src="kitten4.jpg"  data-rsp-img="cat.jpg"                       data-rsp-path="/custom/">' + 
@@ -49,12 +49,21 @@ describe('Respeto: A Deferred Image Loader', function () {
     });
 
     var r2 = new Respeto({
-      disableRetina: true
+      retina: true
     });
 
     // // that the object can be fed options
     it("can have its config overridden", function() {
-      expect(r2.settings.disableRetina).to.not.equal(r1.settings.disableRetina);
+      expect(r2.settings.retina).to.not.equal(r1.settings.retina);
+    });
+
+    it("can have its global retina overridden at load time", function() {
+      var src1 = r2._buildImagePath('test/', 'cat.jpg', 'small', true, 2.0);
+      var src2 = r2._buildImagePath('test/', 'cat.jpg', 'small', false, 2.0);
+
+      expect(src1).to.have.string(r2.settings.retinaSuffix);
+      expect(src1).not.to.equal(src2);
+      expect(src2).not.to.have.string(r2.settings.retinaSuffix);
     });
 
     it("calculates pixel density upon creation", function() {
@@ -72,7 +81,7 @@ describe('Respeto: A Deferred Image Loader', function () {
 
     var rsp = new Respeto({
       imagePath: 'img/',
-      disableRetina: true
+      retina: true
     });
 
     // label load only
