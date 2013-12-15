@@ -17,8 +17,6 @@ This can be used by itself, or with a responsive state manager. I've created a v
 
 > Respeto depends on [jQuery](https://jquery.org/)
 
-> Respeto recommends a responsive image workflow with [Grunt](http://gruntjs.com/) and [Grunt Responsive Images](https://github.com/andismith/grunt-responsive-images) (more details below)
-
 **2** - Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing `</body>` tag)
 
 ```html
@@ -78,6 +76,8 @@ if(width > 1024) {
   rsp.load('huge'); // loads images with _huge suffix
 }
 ```
+
+> Respeto recommends a responsive image workflow with [Grunt](http://gruntjs.com/) and [Grunt Responsive Images](https://github.com/andismith/grunt-responsive-images)
 
 ## A Responsive Image Workflow
 
