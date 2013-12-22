@@ -90,9 +90,6 @@ Respeto.prototype = {
     },
 
     _buildImagePath: function(path, imgData, label, retina, pixelRatio) {
-
-      console.log(path, imgData, label, retina, pixelRatio);
-
       var imgExt = imgData.slice(-4);
       var imgBase = imgData.slice(0,-4);
 
