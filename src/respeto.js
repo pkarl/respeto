@@ -93,7 +93,7 @@ Respeto.prototype = {
         retinaSuffix = this.settings.retinaSuffix;
       }
 
-      return path + imgBase + (label ? '_' + label : '') + retinaSuffix + imgExt;
+      return path + imgBase + (label ? '-' + label : '') + retinaSuffix + imgExt;
     },
 
     _fetchTargets: function(match, exclude, scope) {
@@ -106,7 +106,7 @@ Respeto.prototype = {
         selector += this.settings.searchTags[x] + '[data-' + this.settings.imageDataAttribute + ']';
       }
 
-      return $(scope).find('img[data-rsp-img],div[data-rsp-img]').not(exclude);
+      return $(scope).find('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').not(exclude);
     }
 };
 
