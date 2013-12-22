@@ -1,6 +1,8 @@
 //  /*global confirm, mocha */
 //  mocha.globals(["confirm"]);
 
+console.log('tests must be run on port 8000 right now, sorry!');
+
 describe('Respeto: A Deferred Image Loader', function () {
 
   var $fixture =  '<div id="retina-test"   data-rsp-img="cat.jpg"                   ></div>' + 
@@ -17,10 +19,6 @@ describe('Respeto: A Deferred Image Loader', function () {
                   '<img src="kitten10.jpg" data-rsp-img="cat.jpg" class="test-exclude">' + 
                   '<div                    data-rsp-img="cat.jpg" class="test-exclude"></div>' + 
 
-  // before(function () {
-    
-  // });
-
   beforeEach(function () {
     $("#fixtures").append($fixture);
   });
@@ -28,12 +26,6 @@ describe('Respeto: A Deferred Image Loader', function () {
   afterEach(function () {
     $("#fixtures").empty();
   });
-
-  // after(function () {
-  //   $("#fixtures").empty();
-  // });
-
-  // what am I testing?
 
   describe("module creation, configuration, and destruction", function() {
 
@@ -90,9 +82,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test0');
 
       var t0_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == '/custom/cat_test0.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test//custom/cat_test0.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == '/custom/cat-test0.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/custom/cat-test0.jpg)') {
           t0_count++;
         }
       });
@@ -107,9 +99,12 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test1');
 
       var t1_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test1.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test1.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+
+        console.log('string load, test 1', $(this).attr('src'), $(this).css('background-image'));
+
+        if($(this).attr('src') == 'img/cat-test1.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test1.jpg)') {
           t1_count++;
         }
       });
@@ -124,9 +119,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test2', { context:'#test-context' } );
 
       var t2_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test2.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test2.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == 'img/cat-test2.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test2.jpg)') {
           t2_count++;
         }
       });
@@ -141,9 +136,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test3', { context: '#test-context', match: '.test-match' });
 
       var t3_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test3.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test3.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == 'img/cat-test3.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test3.jpg)') {
           t3_count++;
         }
       });
@@ -158,9 +153,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test4', { match: '.test-match' });
 
       var t4_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test4.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test4.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == 'img/cat-test4.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test4.jpg)') {
           t4_count++;
         }
       });
@@ -175,9 +170,9 @@ describe('Respeto: A Deferred Image Loader', function () {
     //   rsp.load('test5', { exclude: '.test-match, .text-exclude' });
 
     //   var t5_count = 0;
-    //   $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-    //     if($(this).attr('src') == 'img/cat_test5.jpg' || 
-    //        $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test5.jpg)') {
+    //   $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+    //     if($(this).attr('src') == 'img/cat-test5.jpg' || 
+    //        $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test5.jpg)') {
     //       t5_count++;
     //     }
     //   });
@@ -189,9 +184,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test5.1', { match: '.test-match', exclude: '.test-exclude' });
 
       var t5_1_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test5.1.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test5.1.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == 'img/cat-test5.1.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test5.1.jpg)') {
           t5_1_count++;
         }
       });
@@ -205,9 +200,9 @@ describe('Respeto: A Deferred Image Loader', function () {
       rsp.load('test5.2', { exclude: '.text-exclude' });
 
       var t5_2_count = 0;
-      $('img[data-rsp-img],div[data-rsp-img]').each(function() {
-        if($(this).attr('src') == 'img/cat_test5.2.jpg' || 
-           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat_test5.2.jpg)') {
+      $('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').each(function() {
+        if($(this).attr('src') == 'img/cat-test5.2.jpg' || 
+           $(this).css('background-image') === 'url(http://127.0.0.1:8000/test/img/cat-test5.2.jpg)') {
           t5_2_count++;
         }
       });

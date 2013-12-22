@@ -30,6 +30,8 @@ var Respeto = function (options) {
           // autoConserve: false, // FUTURE
         };
 
+    this.lastState = null; // used to prevet loading multiple times...
+
     this.settings = $.extend( {}, defaults, options );
     this._defaults = defaults;
 
@@ -60,6 +62,12 @@ Respeto.prototype = {
 
     _reSource: function(targets, label, retina) {
       var _this = this;
+
+      if(label === this.lastState) {
+        return;
+      }
+
+      this.lastState = label;
 
       targets.each(function() {
         var $t = $(this);
