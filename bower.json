@@ -1,14 +1,14 @@
 {
   "name": "respeto",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "authors": [
     "pkarl <pete.karl@gmail.com>"
   ],
-  "description": "A deferred image loader. Built for responsive & retina-friendliness",
+  "description": "A deferred image loader. Built for responsive design workflows. It's retina-friendly",
   "main": "respeto.js",
   "keywords": [
     "deferred",
-    "images",
+    "image",
     "retina",
     "responsive"
   ],
@@ -19,9 +19,10 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "demo"
   ],
   "dependencies": {
-    "jquery": "~2.0.3"
+    "jquery": ">= 1.9.0"
   }
 }
