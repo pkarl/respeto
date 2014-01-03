@@ -17,20 +17,18 @@ var Respeto = function (options) {
 
     // Create the defaults once
     var defaults = {
-          imageDataAttribute: 'rsp-img',
-          imagePathAttribute: 'rsp-path',
+      imageDataAttribute: 'rsp-img',
+      imagePathAttribute: 'rsp-path',
 
-          imagePath: '',
+      imagePath: '',
 
-          retina: false, // don't append retina suffix
-          retinaSuffix: '_x2',
+      retina: false, // don't append retina suffix
+      retinaSuffix: '_x2',
 
-          // searchTags: ['img','div'] // FUTURE, assumes img + div for now
-          // scaleCSSPrefix: 'rsp-scale-', // FUTURE
-          // autoConserve: false, // FUTURE
-        };
-
-    this.lastState = null; // used to prevet loading multiple times...
+      // searchTags: ['img','div'] // FUTURE, assumes img + div for now
+      // scaleCSSPrefix: 'rsp-scale-', // FUTURE
+      // autoConserve: false, // FUTURE
+    };
 
     this.settings = $.extend( {}, defaults, options );
     this._defaults = defaults;
@@ -63,12 +61,6 @@ Respeto.prototype = {
     _reSource: function(targets, label, retina) {
       var _this = this;
 
-      if(label === this.lastState) {
-        return;
-      }
-
-      this.lastState = label;
-
       targets.each(function() {
         var $t = $(this);
         var userImg = $t.data(_this.settings.imageDataAttribute);
@@ -90,6 +82,9 @@ Respeto.prototype = {
     },
 
     _buildImagePath: function(path, imgData, label, retina, pixelRatio) {
+
+      console.log(path, imgData, label, retina, pixelRatio);
+
       var imgExt = imgData.slice(-4);
       var imgBase = imgData.slice(0,-4);
 
@@ -98,7 +93,7 @@ Respeto.prototype = {
         retinaSuffix = this.settings.retinaSuffix;
       }
 
-      return path + imgBase + (label ? '-' + label : '') + retinaSuffix + imgExt;
+      return path + imgBase + (label ? '_' + label : '') + retinaSuffix + imgExt;
     },
 
     _fetchTargets: function(match, exclude, scope) {
@@ -111,7 +106,7 @@ Respeto.prototype = {
         selector += this.settings.searchTags[x] + '[data-' + this.settings.imageDataAttribute + ']';
       }
 
-      return $(scope).find('img[data-rsp-img],div[data-rsp-img],section[data-rsp-img]').not(exclude);
+      return $(scope).find('img[data-rsp-img],div[data-rsp-img]').not(exclude);
     }
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "respeto",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "authors": [
     "pkarl <pete.karl@gmail.com>"
   ],
@@ -13,7 +13,6 @@
     "responsive"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
