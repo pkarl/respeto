@@ -1,6 +1,8 @@
 # Respeto
 
-Respeto is a deferred image loader made to support responsive image workflows. It was borne of fire and steel (and some semicolons).
+Respeto is a deferred image loader with responsive design workflows in mind. It was borne of fire and steel (and some semicolons).
+
+This repository contains tests, a responsive workflow demo, and a bunch of other junk. If you only want the Respeto lib, then download [respeto.min.js](https://raw.github.com/Upstatement/respeto/master/dist/respeto.min.js).
 
 ## TODO
 
@@ -8,6 +10,8 @@ Respeto is a deferred image loader made to support responsive image workflows. I
 * explain bandwidth vs. JS support implications
 * nod to the ongoing responsive image standards conversation
 * finish responsive workflow explanation
+* this all seems like it goes in a web site, not a README, no?
+* maybe remove jQuery as a dependency?
 
 ## Usage
 
