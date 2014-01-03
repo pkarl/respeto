@@ -21,7 +21,7 @@ Respeto is currently in _alpha_, which means it's feature-complete, and ready fo
 
 This can be used by itself, or with a responsive state manager. I've created a very simple state manager implementation in the `/demo/js/demo.js` file.
 
-**1** - Download the latest version of Respeto [here](NEED_DOWNLOAD_LINK)
+**1** - Download the latest version of Respeto [here](https://raw.github.com/Upstatement/respeto/master/dist/respeto.min.js) or `bower install respeto`
 
 > Respeto depends on [jQuery](https://jquery.org/)
 
