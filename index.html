@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Respeto by Upstatement</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Respeto</h1>
+        <h2>Respeto is a deferred image loader made to support responsive image workflows</h2>
+        <a href="https://github.com/Upstatement/respeto" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="introducing-respeto" class="anchor" href="#introducing-respeto"><span class="octicon octicon-link"></span></a>Introducing Respeto</h1>
+
+<p>Respeto is a deferred image loader with responsive design workflows in mind. It was borne of fire and steel (and some semicolons).</p>
+
+<p>Here's an <a href="http://upstatement.com/wp-content/themes/blades/images/portfolio/npr/npr-resp-image.mp4">illustrative video</a> that demonstrates the effect Respeto has. You generate images, Respeto loads them based on media queries. Easy peasey.</p>
+
+<p>This repository contains tests, a responsive workflow demo, and a bunch of other junk. If you only want the Respeto lib, then download <a href="https://raw.github.com/Upstatement/respeto/master/dist/respeto.min.js">respeto.min.js</a> or simply <code>bower install respeto</code>.</p>
+
+<p>Respeto is currently in <em>alpha</em>, which means it's feature-complete, and ready for real-world testing. I'd like to move this toward a v1.0 by February 2014, so grab it and give it a spin!</p>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>finish explaining what this is</li>
+<li>explain bandwidth vs. JS support implications</li>
+<li>nod to the ongoing responsive image standards conversation</li>
+<li>finish responsive workflow explanation</li>
+<li>this all seems like it goes in a web site, not a README, no?</li>
+<li>maybe remove jQuery as a dependency?</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>This can be used by itself, or with a responsive state manager. I've created a very simple state manager implementation in the <code>/demo/js/demo.js</code> file.</p>
+
+<p><strong>1</strong> - Download the latest version of Respeto <a href="https://raw.github.com/Upstatement/respeto/master/dist/respeto.min.js">here</a> or <code>bower install respeto</code></p>
+
+<blockquote>
+<p>Respeto depends on <a href="https://jquery.org/">jQuery</a></p>
+</blockquote>
+
+<p><strong>2</strong> - Add respeto.js to your HTML document (I recommend putting this at the bottom, before your closing <code>&lt;/body&gt;</code> tag)</p>
+
+<div class="highlight highlight-html"><pre>    ...
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path_to_js/respeto.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+<p><strong>3</strong> - Add Respeto data attributes where you want to manage image loading</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"lincoln_fallback.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_lincoln.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_washington.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_obama.jpg"</span> <span class="na">data-rsp-path=</span><span class="s">"custom/path/"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_obama.jpg"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p><strong>4</strong> - Create a Respeto object and run the <code>load()</code> method</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// jQuery.on('ready')</span>
+
+    <span class="kd">var</span> <span class="nx">rsp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Respeto</span><span class="p">();</span>
+    <span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'tablet'</span><span class="p">);</span>
+
+<span class="p">});</span>
+</pre></div>
+
+<p><strong>5</strong> - ...and your <code>img</code> elements get their <code>src</code> attributes set, and new images will load</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"portrait_lincoln_tablet.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_lincoln.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"portrait_washington_tablet.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_washington.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"custom/path/portrait_obama_tablet.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_obama.jpg"</span> <span class="na">data-rsp-path=</span><span class="s">"custom/path/"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"background-image: url(http://your_site.com/portrait_obama_tablet.jpg)"</span> <span class="na">data-rsp-img=</span><span class="s">"portrait_obama.jpg"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p><strong>6</strong> - [optional] Simple state-based usage</p>
+
+<div class="highlight highlight-javascript"><pre>
+<span class="c1">// this should be inside of a jQuery $.ready() function</span>
+
+<span class="kd">var</span> <span class="nx">rsp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Respeto</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">width</span><span class="p">();</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">width</span> <span class="o">&lt;=</span> <span class="mi">480</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'small'</span><span class="p">);</span> <span class="c1">// loads images with _small suffix</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">width</span> <span class="o">&gt;</span> <span class="mi">480</span> <span class="o">&amp;&amp;</span> <span class="nx">width</span> <span class="o">&lt;=</span> <span class="mi">1024</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'large'</span><span class="p">);</span> <span class="c1">// sets image sources with _large suffix</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">width</span> <span class="o">&gt;</span> <span class="mi">1024</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'huge'</span><span class="p">);</span> <span class="c1">// loads images with _huge suffix</span>
+<span class="p">}</span>
+</pre></div>
+
+<blockquote>
+<p>Respeto recommends a responsive image workflow with <a href="http://gruntjs.com/">Grunt</a> and <a href="https://github.com/andismith/grunt-responsive-images">Grunt Responsive Images</a></p>
+</blockquote>
+
+<h2>
+<a name="a-responsive-image-workflow" class="anchor" href="#a-responsive-image-workflow"><span class="octicon octicon-link"></span></a>A Responsive Image Workflow</h2>
+
+<p>Using Respeto really means that you're using a responsive image workflow (possibly for the first time). What I've created in the <code>/demo</code> directory constitutes a very simple example of a working responsive workflow. </p>
+
+<p>Here are the pieces:</p>
+
+<ol>
+<li>a source images directory</li>
+<li>image workflow tools (in this case Grunt and ImageMagick)</li>
+<li>a destination directory</li>
+<li>Respeto, of course</li>
+</ol><h3>
+<a name="1---source-image-management" class="anchor" href="#1---source-image-management"><span class="octicon octicon-link"></span></a>1 - Source image management</h3>
+
+<ul>
+<li>certain formats don't process well (animated gifs, svg)</li>
+<li>have a source images dir for processing, and a source images dir for copying</li>
+<li>my example only has a processing dir for brevity</li>
+</ul><h3>
+<a name="2---image-workflow-tools" class="anchor" href="#2---image-workflow-tools"><span class="octicon octicon-link"></span></a>2 - Image Workflow Tools</h3>
+
+<ul>
+<li>Grunt</li>
+<li>Grunt Responsive Images (<a href="https://github.com/andismith/grunt-responsive-images">https://github.com/andismith/grunt-responsive-images</a>)</li>
+<li>ImageMagick
+
+<ul>
+<li>
+<code>brew install ImageMagick</code> if you're on OSX</li>
+</ul>
+</li>
+</ul><h3>
+<a name="3---destination-image-management" class="anchor" href="#3---destination-image-management"><span class="octicon octicon-link"></span></a>3 - Destination image management</h3>
+
+<ul>
+<li>no source control here
+
+<ul>
+<li>.gitignore away</li>
+</ul>
+</li>
+<li>compress wisely
+
+<ul>
+<li>you can get away with more compression in retina (<a href="http://dh.karelia.com/retina/">http://dh.karelia.com/retina/</a>)</li>
+</ul>
+</li>
+</ul><h3>
+<a name="4---respeto-implementation" class="anchor" href="#4---respeto-implementation"><span class="octicon octicon-link"></span></a>4 - Respeto implementation</h3>
+
+<ul>
+<li>This is the easy part, eh? Depending on your needs, the rest of this README and examples should take care of this part...</li>
+</ul><h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a name="new-respetooptions" class="anchor" href="#new-respetooptions"><span class="octicon octicon-link"></span></a>new Respeto(<em>options</em>)</h3>
+
+<ul>
+<li>options - <em>object , optional</em> . Respeto parameters, see below</li>
+</ul><h4>
+<a name="usage-1" class="anchor" href="#usage-1"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">rsp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Respeto</span><span class="p">();</span>
+</pre></div>
+
+<p>Returns the object with the following methods:</p>
+
+<ul>
+<li>rsp.load(label, <em>options</em>) - processes targets that contain Respeto data attributes and assigns <code>src</code> or <code>style</code> properties as necessary. <code>options</code> is an optional object where you may specify a context, a selector to match, and/or a selector to exclude:
+
+<ul>
+<li>
+<em>context</em>: a jQuery selector that limits the scope of what you're loading. Useful if you're working in a single-page app, and you only want to load images inside a specific container.</li>
+<li>
+<em>match</em>: a jQuery selector that limits the scope of what you're loading to elements that match this option.</li>
+<li>
+<em>exclude</em>: a single jQuery selector (not comma-delimited)</li>
+</ul>
+</li>
+</ul><h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>options</h3>
+
+<table border="0" cellspacing="0">
+<thead>
+<td align="center"><strong>Parameter</strong></td>
+        <td align="center"><strong>Type</strong></td>
+        <td align="center"><strong>Default Value</strong></td>
+        <td align="center"><strong>Example</strong></td>
+        <td align="center"><strong>Description</strong></td>
+    </thead>
+<tr>
+<td><strong>imageDataAttribute</strong></td>
+        <td>string</td>
+        <td>'rsp-img'</td>
+        <td>'image-source'</td>
+        <td>This translates into a <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes">data attribute</a> that contains a source image. Using the default, it will look like this: <code>&lt;img data-rsp-img=“your_image_here.jpg”&gt;</code>
+</td>
+    </tr>
+<tr>
+<td><strong>imagePathAttribute</strong></td>
+        <td>string</td>
+        <td>'rsp-path'</td>
+        <td>'custom-path'</td>
+        <td>This is the data attribute with will contain paths for each image that wishes to override the global <code>imagePath</code>.</td>
+    </tr>
+<tr>
+<td><strong>imagePath</strong></td>
+        <td>string</td>
+        <td>''</td>
+        <td>'images/'</td>
+        <td>This path will be prefixed onto every source image. If a <code>data-rsp-path</code> is present, imagePath will be ignored.</td>
+    </tr>
+<tr>
+<td><strong>disableRetina</strong></td>
+        <td>boolean</td>
+        <td>true</td>
+        <td>false</td>
+        <td>If you wish to enable retina suffixes (for instance, if you are generating retina alternatives), set this to <code>false</code>.</td>
+    </tr>
+<tr>
+<td><strong>retinaSuffix</strong></td>
+        <td>string</td>
+        <td>'_x2'</td>
+        <td>'<a href="https://github.com/2" class="user-mention">@2</a>'</td>
+        <td>
+<code>retinaSuffix</code> determines the suffix that will be attached when <code>disableRetina</code> is false, and users are accessing your site on a retina-friendly device.</td>
+    </tr>
+</table><h3>
+<a name="minimizing-requestsbandwidth-vs-javascript-support" class="anchor" href="#minimizing-requestsbandwidth-vs-javascript-support"><span class="octicon octicon-link"></span></a>Minimizing Requests/Bandwidth vs. JavaScript support</h3>
+
+<p>TBD</p>
+
+<h3>
+<a name="advanced" class="anchor" href="#advanced"><span class="octicon octicon-link"></span></a>Advanced</h3>
+
+<h4>
+<a name="loading-images-based-on-class-matching" class="anchor" href="#loading-images-based-on-class-matching"><span class="octicon octicon-link"></span></a>Loading images based on class matching</h4>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">rsp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Respeto</span><span class="p">();</span>
+<span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'small'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">match</span><span class="o">:</span> <span class="s1">'.load-me'</span>
+<span class="p">});</span>
+</pre></div>
+
+<h5>
+<a name="before-running-rspload" class="anchor" href="#before-running-rspload"><span class="octicon octicon-link"></span></a>Before running <code>rsp.load()</code>:</h5>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"dog.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"fish.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"cat.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"monkey.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"elephant.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"giraffe.jpg"</span><span class="nt">&gt;</span>
+</pre></div>
+
+<h5>
+<a name="after-running-rspload" class="anchor" href="#after-running-rspload"><span class="octicon octicon-link"></span></a>After running <code>rsp.load()</code>:</h5>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"dog_small.jpg"</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"dog.jpg"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- match! --&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"fish_small.jpg"</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"fish.jpg"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- match! --&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"cat.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"monkey.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"elephant_small.jpg"</span> <span class="na">class=</span><span class="s">"load-me"</span> <span class="na">data-rsp-img=</span><span class="s">"elephant.jpg"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- match! --&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"giraffe.jpg"</span><span class="nt">&gt;</span>
+
+</pre></div>
+
+<h4>
+<a name="contextual-image-loading" class="anchor" href="#contextual-image-loading"><span class="octicon octicon-link"></span></a>Contextual image-loading</h4>
+
+<div class="highlight highlight-javascript"><pre>
+<span class="kd">var</span> <span class="nx">rsp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Respeto</span><span class="p">();</span>
+
+<span class="c1">// load our "large" images inside of elements with id of 'page-1'</span>
+<span class="nx">rsp</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">'large'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">context</span><span class="o">:</span> <span class="s1">'#page-1'</span>
+<span class="p">});</span>
+</pre></div>
+
+<h5>
+<a name="before-running-load" class="anchor" href="#before-running-load"><span class="octicon octicon-link"></span></a>Before running <code>load()</code>:</h5>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"dog.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"fish.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+
+<span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"cat.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"monkey.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+
+<span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-3"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"elephant.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"giraffe.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</pre></div>
+
+<h5>
+<a name="after-running-load" class="anchor" href="#after-running-load"><span class="octicon octicon-link"></span></a>After running <code>load()</code>:</h5>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"dog_large.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"dog.jpg"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- match! --&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"fish_large.jpg"</span> <span class="na">data-rsp-img=</span><span class="s">"fish.jpg"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- match! --&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+
+<span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"cat.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"monkey.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+
+<span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"#page-3"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"elephant.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">data-rsp-img=</span><span class="s">"giraffe.jpg"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Upstatement/respeto/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Upstatement/respeto/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Upstatement/respeto"></a> is maintained by <a href="https://github.com/Upstatement">Upstatement</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-294631-15");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
