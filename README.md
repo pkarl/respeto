@@ -1,12 +1,12 @@
 # Respeto
 
-Respeto is a deferred image loader with responsive design workflows in mind. It was borne of fire and steel (and some semicolons).
+Respeto is a deferred image loader with responsive design workflows in mind. It was borne of fire and steel (and some semicolons). You generate images, Respeto loads them based on media queries + HTML data attributes. Easy peasey.
 
-Here's an [illustrative video](http://upstatement.com/wp-content/themes/blades/images/portfolio/npr/npr-resp-image.mp4) that demonstrates the effect Respeto has. You generate images, Respeto loads them based on media queries. Easy peasey.
+<img src="http://fat.gfycat.com/UnfoldedFlawedFrillneckedlizard.gif">
 
 This repository contains tests, a responsive workflow demo, and a bunch of other junk. If you only want the Respeto lib, then download [respeto.min.js](https://raw.github.com/Upstatement/respeto/master/dist/respeto.min.js) or simply `bower install respeto`.
 
-Respeto is currently in _alpha_, which means it's feature-complete, and ready for real-world testing. I'd like to move this toward a v1.0 by February 2014, so grab it and give it a spin!
+Respeto is currently in _alpha_, which means it's feature-complete, and ready for real-world testing. So grab it and give it a spin!
 
 ## TODO
 
